@@ -208,17 +208,20 @@ void quickSort(SqList *list)
 void binarySearch(SqList list)
 {
     cout<<"请输入要查询的元素值："<<endl;
-    int num;
-    int pointer=0;
+    int num,end=list.length,begin = 0;
+    int pointer=(begin - end)/2;
     cin>>num;
     while(1){
-        if(list.elem[pointer]==num)
+        if(list.elem[pointer] == num){
             break;
-         if(list.elem[pointer]>num){
-            pointer = (list.length - pointer)/2
         }
-        if(list.elem[pointer]<num){
-            pointer = (pointer - 0)/2
+        if(list.elem[pointer] > num){
+            begin = pointer;
+            pointer = (end - begin)/2;
+        }
+        if(list.elem[pointer] < num){
+            end = pointer;
+            pointer = (end - begin)/2;
         }
     }
 }
