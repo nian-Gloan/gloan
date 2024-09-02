@@ -208,11 +208,14 @@ void quickSort(SqList *list)
 void binarySearch(SqList list)
 {
     cout<<"请输入要查询的元素值："<<endl;
-    int num,end=list.length,begin = 0;
+    int num,count,end=list.length,begin = 0;
     int pointer=(begin - end)/2;
     cin>>num;
     while(1){
+        count++;
         if(list.elem[pointer] == num){
+            cout<<"list数组存在"<<num<<endl;
+            cout<<"比较"<<count<<"次数"<<endl;
             break;
         }
         if(list.elem[pointer] > num){
@@ -223,5 +226,11 @@ void binarySearch(SqList list)
             end = pointer;
             pointer = (end - begin)/2;
         }
+        if(end == begin){
+            cout<<"查询不到"<<endl;
+            break;
+        }
+    }
+}
     }
 }
