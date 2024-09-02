@@ -1,1 +1,224 @@
 Gloan is a good man!
+/*
+    源文件名：P1.cpp
+    功能：静态线性表操作
+*/
+ 
+#include <stdio.h>
+#include <stdlib.h>
+#include<iostream>
+using namespace std;
+#define max 10000
+ 
+typedef struct 
+{
+    int elem[max];         //存放元素的数组
+    int length;            //当前长度
+} SqList;
+ 
+void init(SqList *list);
+void display(SqList list);
+void insert(SqList *list);
+void search(SqList list);
+void del(SqList *list);
+void simpleSort(SqList *list);
+void quickSort(SqList *list);
+void binarySearch(SqList list);
+ 
+SqList list;
+ 
+int main(void)
+{
+    char choice;
+ 
+    while (1)
+    {    //菜单内容和函数可按实际实现功能自行调整 
+        system("cls");
+        printf("\n\n\n\n") ;
+        printf("\t\t            静态线性表操作  \n") ;
+        printf("\t\t======================================");
+        printf("\n\n");
+        printf("\t\t             1：初始化      \n");
+        printf("\t\t             2：显示        \n");
+        printf("\t\t             3：单个插入    \n");
+        printf("\t\t             4：查找        \n");
+        printf("\t\t             5：删除        \n");
+        printf("\t\t             6：简单排序    \n");
+        printf("\t\t             7：快速排序    \n");
+        printf("\t\t             8：折半查找    \n");
+        printf("\n");
+        printf("\t\t             0：退出        \n");
+        printf("\n");
+        printf("\t\t请选择：");
+ 
+        choice = getchar();
+        system("cls");
+         
+        switch(choice)
+        {
+            case '1':
+                init(&list);
+                break;
+            case '2':
+                display(list);
+                break;
+            case '3':
+                insert(&list);
+                break;
+            case '4':
+                search(list);
+                break;
+            case '5':
+                del(&list);
+                break;
+            case '6':
+                simpleSort(&list);
+                break;
+            case '7':
+                quickSort(&list);
+                break;
+            case '8':
+                binarySearch(list);
+                break;
+            case '0':
+                exit(0);
+        }
+    }
+    return 0;
+}
+ 
+ 
+ 
+//屏幕提示后，从键盘输入线性表长度和随机数种子，生成指定长度的线性表list
+void init(SqList *list)
+{
+    int i;
+    while (1)
+    {
+        printf("输入元素个数（0－%d）：",max); 
+        scanf("%d",&list->length) ;
+        if (list->length >= 0 && list->length <= max)
+            break;
+        printf("\n");
+    }
+    while (1)
+    {
+        printf("输入随机数种子（0－32767）：") ;
+        scanf("%d",&i);
+        if (i >= 0 && i <= 32767)
+            break;
+        printf("\n");
+    }
+    srand(i);  //指定随机数种子，相同的种子将产生相同的数据序列
+    rand();
+ 
+    for (i = 0; i < list->length; i++)
+    {
+        list->elem[i] = rand() % 10000;
+    }
+    for (i = list->length; i < max; i++)
+        list->elem[i] = 0;
+}
+ 
+//屏幕输出 
+void display(SqList list)
+{
+    cout<<"线性表的值是："<<endl;
+    for(int nub=0;nub<list.length;nub++){
+        cout<<list.elem[nub]<<"/t";
+    }
+}
+ 
+//屏幕提示后，从键盘输入一个元素值，然后把这个新元素插到线性表list的末尾
+//应有溢出判断和报告
+void insert(SqList *list)
+{
+    if(list->length+1==max || list->length+1>max){
+        cout<<"内存不够"<<endl;
+    }else{
+        cout<<"请输入一个元素值:"<<endl;
+        cin>>list->elem[list->length];
+        list->length+1;
+    }
+}
+ 
+//屏幕提示后，从键盘输入一个元素值，在线性表list中搜索这个元素
+//屏幕显示搜索结果和搜索过程中的比较次数
+void search(SqList list)
+{
+    cout<<"请输入要查询的元素值："<<endl;
+    int num;
+    cin>>num;
+    for(int nub=0;nub<list.length;nub++){
+        if(list.elem[nub]==num){
+            cout<<list.elem[nub]<<endl;
+            cout<<"查找了"<<nub+1<<"的次数"<<endl;
+        }else
+            cout<<"没有找到"<<num<<endl;
+    }
+}
+ 
+//屏幕提示后，从键盘输入一个元素值，在线性表list中删除这个元素
+//屏幕显示删除成功与否的信息，并显示比较次数和移动次数
+void del(SqList *list)
+{
+    cout<<"请输入要删除元素的值"<<endl;
+    int num;
+    cin>>num;
+    for(int nub=0;nub<list->length;nub++){
+        if(list->elem[nub]==num){
+            for(int nub1=nub;nub1<list->length-nub;nub1++){
+                list->elem[nub1]=list->elem[nub1+1];
+            }
+            cout<<"删除成功"<<endl;
+            cout<<"比较"<<nub+1<<"次数"endl;
+            cout<<"移动"<<list->length-nub<<"次数"<<endl;
+        }else
+            cout<<"没有此元素"<<endl;
+    }
+}
+ 
+//对线性表list进行简单排序
+//屏幕显示比较次数和移动次数
+void simpleSort(SqList *list)
+{   int count;
+    for(int nub=0;nub<list->length;nub++){
+        for(int nub1=nub;nub1<list->length;nub++){
+            if(list->elem[nub]>list->elem[nub1]){
+                int num = list->elem[nub];
+                list->elem[nub] = list->elem[nub1];
+                list->elem[nub1] = num;
+                count++;
+            }
+        }
+    }
+    cout<<"比较"<<(list->length*(1+list->length))/2<<"次数"<<endl;
+    cout<<"移动"<<count<<"次数"<<endl;
+}
+ 
+//对线性表list进行快速排序
+//屏幕显示比较次数和移动次数
+void quickSort(SqList *list)
+{
+
+}
+ 
+//屏幕提示后，从键盘输入一个元素值，对经过排序的线性表list进行折半查找
+//屏幕显示查找结果，并显示比较次数
+void binarySearch(SqList list)
+{
+    cout<<"请输入要查询的元素值："<<endl;
+    int num;
+    int pointer=0;
+    cin>>num;
+    while(1){
+        if(list.elem[pointer]==num)
+            break;
+         if(list.elem[pointer]>num){
+            pointer = (list.length - pointer)/2
+        }
+        if(list.elem[pointer]<num){
+            pointer = (pointer - 0)/2
+        }
+    }
+}
