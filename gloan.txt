@@ -39,9 +39,14 @@ void init(){
 	Tree = init1();
 	showBinTree(Tree);
 }
-void PreorderRecursion(){
-	
+void PreorderRecursion(BiTNode *Node){
+	if(Node !=NULL){
+		cout<<Node->data<<endl;
+		PreorderRecursion(Node->left);
+		PreorderRecursion(Node->right);
+	}
 }
+
 //Ö÷º¯Êý£¬ÏÔÊ¾¹¦ÄÜ²Ëµ¥£¨°üÀ¨Éú³É¶þ²æÊ÷¡¢ÏÔÊ¾¶þ²æÊ÷£©£¬¼üÅÌÑ¡ÔñºóÖ´ÐÐ¶ÔÓ¦¹¦ÄÜ
 int main(void)
 {   
@@ -74,8 +79,9 @@ int main(void)
             case '1':
                 init();
                 break;
-        	case '2':
-        		show
+	    case '2':
+		PreorderRecursion(Tree);
+		break;
             case '0':
                 exit(0);
         }
