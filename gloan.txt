@@ -1,2 +1,89 @@
 Gloan is a good man!
 
+/*
+	Ô´ÎÄ¼þÃû£ºP3.cpp
+	¹¦ÄÜ£º¶þ²æÊ÷²Ù×÷
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include<iostream>
+
+using namespace std;
+typedef struct BiTNode        //¶þ²æÊ÷½áµãÀàÐÍ
+{
+	int data;         //Êý¾Ý
+	int tem1,tem2;    //¸¨ÖúÊý¾Ý£¨ÊµÏ°Ìâ²»ÓÃ£©
+	BiTNode *left;    //×ó×ÓÊ÷Ö¸Õë
+	BiTNode *right;   //ÓÒ×ÓÊ÷Ö¸Õë
+} BiTNode;
+
+BiTNode *Tree;      //±¾³ÌÐò²Ù×÷µÄ¶þ²æÊ÷¸ùÖ¸Õë
+
+#define max 100
+int elem[max];  
+#include "BinT.h"
+      //´æ·ÅÔ­Ê¼Êý¾Ý
+
+//´Ó¼üÅÌÊäÈë¸öÊýºÍËæ»úÊýÖÖ×Ó£¬ÔÚÊý×éelemÖÐÉú³ÉÖ¸¶¨¸öÊýµÄÊý¾Ý£¬¹©ÆäËû³ÌÐòÊ¹ÓÃ£¬0±íÊ¾Êý¾Ý½áÊø
+void init0(int list[]);
+
+//ÔÚ±¾³ÌÐòËùÔÚµÄÎ»ÖÃÉú³ÉÎÄ±¾ÎÄ¼þMap.txt£¬ÆäÖÐÏÔÊ¾ÒÔTreeÎª¸ùÖ¸ÕëµÄ¶þ²æÊ÷      
+void showBinTree(BiTNode *Tree);
+
+//´Ó¼üÅÌÊäÈë¸öÊýºÍËæ»úÊýÖÖ×Ó£¬ÒÔTreeÎª¸ùÖ¸Õë£¬Éú³ÉÖ¸¶¨½áµã¸öÊýµÄ¶þ²æÊ÷£¬¹©ÆäËû³ÌÐòÊ¹ÓÃ
+BiTNode *init1();   
+
+void init(){
+	init0(elem);
+	Tree = init1();
+	showBinTree(Tree);
+}
+void PreorderRecursion(){
+	
+}
+//Ö÷º¯Êý£¬ÏÔÊ¾¹¦ÄÜ²Ëµ¥£¨°üÀ¨Éú³É¶þ²æÊ÷¡¢ÏÔÊ¾¶þ²æÊ÷£©£¬¼üÅÌÑ¡ÔñºóÖ´ÐÐ¶ÔÓ¦¹¦ÄÜ
+int main(void)
+{   
+	char choice;
+	 while (1)
+    {    //²Ëµ¥ÄÚÈÝºÍº¯Êý¿É°´Êµ¼ÊÊµÏÖ¹¦ÄÜ×ÔÐÐµ÷Õû
+        system("cls");
+        printf("\n\n\n\n") ;
+        printf("\t\t            ¾²Ì¬ÏßÐÔ±í²Ù×÷  \n") ;
+        printf("\t\t======================================");
+        printf("\n\n");
+        printf("\t\t             1£º³õÊ¼»¯      \n");
+        printf("\t\t             2£º        \n");
+        printf("\t\t             3£º    \n");
+        printf("\t\t             4£º        \n");
+        printf("\t\t             5£º        \n");
+        printf("\t\t             6£º    \n");
+        printf("\t\t             7£º    \n");
+        printf("\t\t             8£º    \n");
+        printf("\n");
+        printf("\t\t             0£ºÍË³ö        \n");
+        printf("\n");
+        printf("\t\tÇëÑ¡Ôñ£º");
+
+        choice = getchar();
+        system("cls");
+
+        switch(choice)
+        {
+            case '1':
+                init();
+                break;
+        	case '2':
+        		show
+            case '0':
+                exit(0);
+        }
+    }
+	return 0;
+}
+
+
+
+
+
