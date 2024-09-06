@@ -46,7 +46,16 @@ void PreorderRecursion(BiTNode *Node){
 		PreorderRecursion(Node->right);
 	}
 }
+int leaveNodeCount=0;
+void search(BiTNode *Node){
 
+		if(Node !=NULL){
+		search(Node->left);
+		search(Node->right);
+		if(Node->left == NULL && Node->right == NULL )
+			leaveNodeCount++;
+	}
+}
 //Ö÷º¯Êý£¬ÏÔÊ¾¹¦ÄÜ²Ëµ¥£¨°üÀ¨Éú³É¶þ²æÊ÷¡¢ÏÔÊ¾¶þ²æÊ÷£©£¬¼üÅÌÑ¡ÔñºóÖ´ÐÐ¶ÔÓ¦¹¦ÄÜ
 int main(void)
 {   
@@ -81,6 +90,11 @@ int main(void)
                 break;
 	    case '2':
 		PreorderRecursion(Tree);
+		break;
+	    case '3':
+		search(Tree);
+		cout<<leaveNodeCount<<"----------------";
+			system("pause");
 		break;
             case '0':
                 exit(0);
